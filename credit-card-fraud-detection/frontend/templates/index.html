@@ -1,0 +1,160 @@
+<! DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <meta charset = "UTF -8">
+    <meta http-equiv="x-UA-compatible " content="IE=edge">
+    <meta name="viewport" content = "width=device-width, 
+    initial-scale=1.0">
+    <title>login and registration | codehal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">logo</h2>
+        <nav class="navigation">
+            <!--<a href ="#">Home</a>-->
+          <!-- <a href="aboutus.html">About</a> 
+            
+            <a href ="contact.html">Contact</a>-->
+            <button class ="btnlogin-popup">login</button>
+        </nav>
+    </header>
+    <div class="wrapper">
+        <span class="icon-close"><ion-icon name="close"></ion-icon>
+        </span>
+
+        <div class=" form-box login">
+            <h2>Login</h2>
+            <form action ="#">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="Email"required>
+                    <label> Email </label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                        <input type="Password"required>
+                        <label> Password </label>
+                        </div>
+
+                        <div class="remember-forgot">
+                            <label><input type="checkbox">
+                                Remember me</label>
+                            <a href ="#">Forget Password?</a>
+                            </div>
+                <button type="submit" class="btn">Login</button>
+                <div class ="login-register">
+                    <p> Don't have an account?<a href ="#" class="register-link">Register</a>
+                    </p>
+                </div> 
+            </form>
+        </div>
+        <div class=" form-box register">
+            <h2>Registration</h2>
+            <form action ="#">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+                    <input type="text" required>
+                    <label>Username</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    <input type="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">
+                       I agree to the terms & conditions</label>
+                        
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <div class ="login-register">
+                   <p> Already have an account?<a href ="#" class="login-link">Login</a></p>
+
+                </div> 
+           </form>
+        </div>
+    </div>
+    <!--<script>
+        function auth(){
+            var email=document.getElemntbyID('email').value;
+            var password=document.getElementbyId('password').value;
+            //condition
+            if(email=='aarya@gmail.com' && password ==123456)
+            {
+                window.location.assign('loginsuccessful.html');
+                alert("login sucessfully");
+            }
+            else{
+                alert("invalid information");
+                return;
+            }
+        }
+    </script>-->
+    <script>const wrapper = document.querySelector('.wrapper');
+        const loginLink = document.querySelector('.login-link');
+        const registerLink = document.querySelector('.register-link');
+        const btnPopup = document.querySelector('.btnLogin-popup');
+        const iconClose = document.querySelector('.icon-close');
+        const loginForm = document.querySelector('.form-box.login form');
+        
+        registerLink.addEventListener('click', ()=> {
+            wrapper.classList.add('active');
+        
+        })
+        loginLink.addEventListener('click', ()=> {
+            wrapper.classList.remove('active');
+        });
+        btnPopup.addEventListener('click', ()=> {
+            wrapper.classList.add('active-popup');
+        
+        });
+        iconClose.addEventListener('click', ()=> {
+            wrapper.classList .remove('active-popup');
+        
+        });
+        loginForm.addEventListener('submit', (e)=> {
+            e.preventDefault();
+            
+            wrapper.classList.remove('active-popup');
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginForm = document.querySelector(".form-box.login form"); // Target the login form
+            const wrapper = document.querySelector(".wrapper");
+        
+            loginForm.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent default form submission
+        
+                // Get email and password values
+                const email = loginForm.querySelector('input[type="email"]').value.trim();
+                const password = loginForm.querySelector('input[type="password"]').value.trim();
+        
+                // Check if email and password are correct
+                if (email === "aarya@gmail.com" && password === "123456") {
+                    window.location.href = "/loginsuccessful"; // Redirect to successful login page
+                } else {
+                    alert("Invalid email or password"); // Show error message
+                }
+            });
+        });
+        
+        
+            </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Successful Page</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        function logout() {
+            // Clear session storage or local storage if used
+            localStorage.clear();
+            sessionStorage.clear();
+            
+            // Redirect to login page
+            window.location.href = "{{ url_for('index') }}"; // Change this to your actual login page
+        }
+    </script>
+        <style>
+            @import url(https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.xenonstack.com%2Fuse-cases%2Fcredit-fraud-detection&psig=AOvVaw1Qn6CEuzbrIx0r3EWg9hBk&ust=1721560576678000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMj1jYe_tYcDFQAAAAAdAAAAABAE);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: flex-start; /* Align content to the left */
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("{{ url_for('static', filename='credit bg.jpg') }}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-left: 20px; /* Add some padding to the left */
+}
+.navigation .btnlogout {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #000;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #000;
+    font-weight: 500;
+    margin-left: 40px; /* Keep same spacing as login button */
+    transition: 0.5s;
+}
+
+.navigation .btnlogout:hover {
+    background: #000;
+    color: beige;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1001; /* Ensure the container is above the pop-up */
+    position: relative; /* Required for z-index to work */
+}
+
+.row {
+    display: flex;
+    gap: 300px; /* Reduced gap for left alignment */
+    justify-content: center; /* Align boxes to the left */
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: rgb(252, 238, 221);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(243, 239, 239, 0.2);
+    text-align: center;
+    cursor: pointer; 
+    z-index: 1001; /* Lower z-index than the container *//* Add pointer cursor to indicate clickable */
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation .btnlogin-popup {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #000;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #000;
+    font-weight: 500;
+    transition: .5s;
+    display: flex; /* Add flexbox to center text */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-decoration: none; /* Remove underline from link */
+}
+
+.navigation .btnlogin-popup:hover {
+    background:bisque;
+    color: #fff;
+}
+
+.popup {
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 790px; /* Increased width */
+    height: 1000px; /* Added height */
+    padding: 50px; /* Increased padding */
+    background: rgba(255, 255, 255, 0.2); /* Transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-radius: 50px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(235, 232, 232, 0.2); /* Shadow effect */
+    text-align: center;
+    z-index : 1000; /* Lower z-index than the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: visible; /* Initially hidden */
+    opacity: 1; /* Initially transparent */
+    
+}
+
+.popup.active {
+    visibility: visible; /* Show popup 
+    opacity: 1; /* Make it fully visible */
+}
+
+.popup-content h2 {
+    margin-bottom: 10px;
+    color: #2b4e6b;
+}
+
+.popup-content p {
+    margin-bottom: 20px;
+    color: #abbed2;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Interactive hover effects */
+button, .cta {
+    display: inline-block;
+    padding: 12px 25px;
+    margin-top: 20px;
+    background-color: #0d47a1;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+button:hover, .cta:hover {
+    background-color: #083b8d;
+    transform: scale(1.05);
+}
+/* Page transition effect */
+.transition {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.show {
+    opacity: 1;
+    transform: scale(1);
+}
+            /* Style the Logout Button */
+            .logout-btn {
+                width: 130px;
+                height: 50px;
+                background: rgb(252, 238, 221);
+                border: 2px solid #000;
+                outline: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 1.1em;
+                color: #000;
+                font-weight: 500;
+                transition: 0.5s;
+                position: absolute;
+                top: 10px;
+                right: 80px;
+            }
+    
+            .logout-btn:hover {
+                background: #000;
+                color: beige;
+            }
+        </style>
+</head>
+<body>
+    <nav class="navigation">
+    <button class="logout-btn" onclick="logout()">Log out</button> 
+    </nav>
+    <div class="container">
+        <!-- First Row: Contact and About -->
+        <div class="row">
+            <div class="box">
+                <nav class="navigation">
+                    
+                    <a href="{{ url_for('contact') }}" class="btnlogin-popup">CONTACT</a>
+
+                </nav>
+            </div>
+            <div class="box">
+                <nav class="navigation">
+                    <!--<button class="btnlogin-popup">ABOUT US</button>-->
+                    <a href="{{ url_for('about') }}" class="btnlogin-popup">ABOUT US</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Second Row: Credit Card -->
+        <div class="row">
+            <div class="box"> 
+                <nav class="navigation">
+                    <a href="http://127.0.0.1:5000" class="btnlogin-popup">FRADULENT DETECTION</a>
+                </nav>
+            </div>
+            
+    </div>
+
+    <!-- Transparent Pop-up -->
+    <div class="popup">
+        <div class="popup-content">
+        </div>
+    </div>
+
+    <script>
+        function showPopup(title, text) {
+            document.getElementById('popup-title').innerText = title;
+            document.getElementById('popup-text').innerText = text;
+            document.getElementById('popup').classList.add('active');
+        }
+
+        function closePopup() {
+            document.getElementById('popup').classList.remove('active');
+        }
+    </script>
+   
+</body>
+</html>
+

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("{{ url_for('static', filename='credit bg.jpg') }}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            flex-direction: column
+            ;
+            ;
+        }
+
+        /*h1 {
+            color:#08127d9f;
+            font-weight: 1000;
+            margin-bottom: 20px;
+            text-align: center;
+        }*/
+
+        .contact-container {
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.2); /* Light transparent background */
+            backdrop-filter: blur(10px); /* Blurs the background */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-evenly;
+            text-align: center;
+            gap: 20px;
+                
+                
+            }
+            
+        
+
+        .contact-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 250px;
+            
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-item img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            font-size: 24px;
+            color: #555;
+        }
+
+        .contact-info a, .contact-info span {
+            font-size: 16px;
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #E4405F;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .container {
+            animation: fadeIn 1s ease-in-out;
+        }
+        button, .cta {
+            display: inline-block;
+            padding: 12px 25px;
+            margin-top: 20px;
+            background-color: #0d47a1;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        
+        button:hover, .cta:hover {
+            background-color: #083b8d;
+            transform: scale(1.05);
+        }
+        /* Page transition effect */
+.transition {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+    </style>
+</head>
+<body>
+    
+    <div class="contact-container">
+        <div class="contact-item">
+            <img src="{{ url_for('static', filename='475436372_560798087002426_8280670585445165045_n.jpg') }}" alt="Anisha Rijal">
+            <div class="contact-info">
+                <i class="fa fa-envelope"></i>
+                <span>anisharijal09@gmail.com</span>
+                <i class="fa-brands fa-instagram"></i>
+                <a href="https://www.instagram.com/anisha.rij">@anisha.rij</a>
+            </div>
+        </div>
+        <div class="contact-item">
+            <img src="{{ url_for('static', filename='476302363_1301332217853213_7063413895747126232_n.png') }}" alt="Aarya Maghaia">
+            <div class="contact-info">
+                <i class="fa fa-envelope"></i>
+                <span>aaryamaghaia11@gmail.com</span>
+                <i class="fa-brands fa-instagram"></i>
+                <a href="https://www.instagram.com/__aaryyaa__">@aaryaa</a>
+            </div>
+            
+        </div>
+        <div class="contact-item">
+            <img src="{{ url_for('static', filename='475486076_640940468457986_4010833823084325869_n.jpg') }}" alt="Matina Rajkarnikar">
+            <div class="contact-info">
+                <i class="fa fa-envelope"></i>
+                <span>matinarajkarnikar2024@gmail.com</span>
+                <i class="fa-brands fa-instagram"></i>
+                <a href="https://www.instagram.com/rajkarnikar_matina">@rajkarnikar_matina</a>
+            </div>
+        </div>
+        <div class="contact-item">
+            <img src="{{ url_for('static', filename='474800189_2386022601765902_6408968915909270117_n.jpg') }}" alt="Nandika Rana">
+            <div class="contact-info">
+                <i class="fa fa-envelope"></i>
+                <span>nandikarana9898@gmail.com</span>
+                <i class="fa-brands fa-instagram"></i>
+                <a href="https://www.instagram.com/nandika.rana">@nandikarana</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.classList.add("show");
+    
+            document.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", function (e) {
+                    if (this.href.includes("contact.html")) {
+                        e.preventDefault();
+                        document.body.classList.remove("show");
+                        setTimeout(() => {
+                            window.location.href = this.href;
+                        }, 800); // Delay matches the transition duration
+                    }
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>

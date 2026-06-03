@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Fraud Detection</title>
+    <style>
+        /* Your existing inline styles can remain here */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-image: url("{{ url_for('static', filename='credit bg.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            position: relative; /* For logout positioning */
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            width: 90%;
+            padding: 40px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            margin: auto;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        input[type="file"] {
+            margin: 10px 0;
+        }
+        
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+        
+        button[type="submit"] {
+            margin-bottom: 30px; /* Adds space between buttons */
+        }
+        
+        /* Hide default file input */
+        input[type="file"] {
+            display: none;
+        }
+        
+        /* Style custom file button */
+        .custom-file-button {
+            padding: 10px 10px;
+            background-color: #007bff; /* Same as Upload & Predict */
+            color: white;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            display: inline-block;
+            margin: 10px auto;
+            text-align: center;
+            font-size: 16px; /* Adjust size */
+            width: 100px; /* Adjust width */
+        }
+        
+        /* Hover effect */
+        .custom-file-button:hover {
+            background-color: #0056b3;
+        }
+        
+        .logout-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .fraud {
+            color: red;
+            font-weight: bold;
+        }
+        
+        .non-fraud {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Credit Card Fraud Detection</h1>
+        <h3>Upload a CSV file with transaction details</h3>
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <!-- Hidden file input -->
+            <input type="file" id="file-input" name="file" accept=".csv" required>
+        
+            <!-- Custom-styled button -->
+            <label for="file-input" class="custom-file-button">Choose File</label>
+            
+            <!-- Display selected file name -->
+            <span id="file-name">No file chosen</span> 
+            <br>
+        
+            <!-- Upload button -->
+            <button type="submit">Upload & Predict</button>
+        </form>
+        
+        {% if results %}
+            <h2>Predicted Results</h2>
+            <style>
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    font-family: Arial, sans-serif;
+                    margin: 20px 0;
+                }
+                
+                th, td {
+                    border: 1px solid #ddd;
+                    padding: 20px;
+                    text-align: center;
+                }
+                
+                th {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+                
+                tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
+                
+                .fraud {
+                    background-color: #ffdddd;
+                    color: red;
+                    font-weight: bold;
+                }
+                
+                .non-fraud {
+                    background-color: #ddffdd;
+                    color: green;
+                    font-weight: bold;
+                }
+            </style>
+            
+            <table>
+                <tr>
+                    <th>Time</th>
+                    <th>Amount</th>
+                    <th>Prediction</th>
+                </tr>
+                {% for row in results %}
+                <tr>
+                    <td>{{ row['Time'] }}</td>
+                    <td>{{ row['Amount'] }}</td>
+                    <td class="{% if row['Prediction'] == 'Fraudulent' %}fraud{% else %}non-fraud{% endif %}">
+                        {{ row['Prediction'] }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            
+            <br>
+            <a class="download-link" href="/download">Download Predictions</a>
+        {% endif %}
+    </div>
+    
+    <nav class="navigation">
+        <button class="logout-btn" onclick="logout()">Log out</button> 
+    </nav>
+    
+    <script>
+        function logout() {
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace("/index"); // Use proper redirection
+        }
+    document.getElementById("file-input").addEventListener("change", function() {
+        var fileName = this.files[0] ? this.files[0].name : "No file chosen";
+        document.getElementById("file-name").textContent = fileName;
+    });
+
+    </script>
+    
+        <style>
+            /* Style the Logout Button */
+            .logout-btn {
+                width: 130px;
+                height: 50px;
+                background: rgb(252, 238, 221);
+                border: 2px solid #000;
+                outline: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 1.1em;
+                color: #000;
+                font-weight: 500;
+                transition: 0.5s;
+                position: absolute;
+                top: 10px;
+                right: -450px;
+            }
+    
+            .logout-btn:hover {
+                background: #000;
+                color: beige;
+            }
+        </style>
+</body>
+</html>
